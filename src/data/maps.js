@@ -1,0 +1,158 @@
+// Map definitions for Mountain Defense.
+// Play area: x 0..960, y ~40..555 (top HUD and bottom panel overlay the rest).
+// Ground enemies follow pathWaypoints; flying enemies follow airPathWaypoints.
+
+export const MAPS = [
+  {
+    id: 'pine-pass',
+    name: 'Pine Pass',
+    difficulty: 'Easy',
+    description: 'A forested mountain pass with a medium-length road and plenty of ledges to build on. Good for beginners.',
+    pathWaypoints: [
+      { x: 110, y: -40 },
+      { x: 110, y: 150 },
+      { x: 500, y: 150 },
+      { x: 500, y: 300 },
+      { x: 160, y: 300 },
+      { x: 160, y: 460 },
+      { x: 820, y: 460 },
+      { x: 820, y: 510 },
+    ],
+    airPathWaypoints: [
+      { x: 110, y: -40 },
+      { x: 280, y: 150 },
+      { x: 520, y: 270 },
+      { x: 700, y: 390 },
+      { x: 820, y: 510 },
+    ],
+    buildPads: [
+      { id: 'pp-1', x: 60, y: 90 },
+      { id: 'pp-2', x: 180, y: 90 },
+      { id: 'pp-3', x: 320, y: 215 },
+      { id: 'pp-4', x: 560, y: 220 },
+      { id: 'pp-5', x: 420, y: 360 },
+      { id: 'pp-6', x: 90, y: 360 },
+      { id: 'pp-7', x: 250, y: 395 },
+      { id: 'pp-8', x: 520, y: 410 },
+      { id: 'pp-9', x: 700, y: 520 },
+      { id: 'pp-10', x: 880, y: 420 },
+    ],
+    startingMoney: 500,
+    baseLives: 20,
+    waveCount: 15,
+    difficultyFactor: 1.0,
+    airFactor: 0.7,
+    seed: 11,
+    theme: {
+      bg: 0x35452f,
+      road: 0x8a6f47,
+      roadEdge: 0x55432a,
+      rock: 0x2c3a27,
+      rockLight: 0x42543a,
+      deco: 'trees',
+    },
+  },
+  {
+    id: 'rocky-spiral',
+    name: 'Rocky Spiral',
+    difficulty: 'Medium',
+    description: 'A long road spiralling into a crater. Few strong build positions - central pads must do the work.',
+    pathWaypoints: [
+      { x: 480, y: -40 },
+      { x: 480, y: 80 },
+      { x: 870, y: 80 },
+      { x: 870, y: 500 },
+      { x: 90, y: 500 },
+      { x: 90, y: 150 },
+      { x: 700, y: 150 },
+      { x: 700, y: 420 },
+      { x: 220, y: 420 },
+      { x: 220, y: 250 },
+      { x: 480, y: 250 },
+      { x: 480, y: 340 },
+    ],
+    airPathWaypoints: [
+      { x: 480, y: -40 },
+      { x: 820, y: 120 },
+      { x: 700, y: 300 },
+      { x: 480, y: 340 },
+    ],
+    buildPads: [
+      { id: 'rs-1', x: 160, y: 70 },
+      { id: 'rs-2', x: 560, y: 200 },
+      { id: 'rs-3', x: 780, y: 250 },
+      { id: 'rs-4', x: 620, y: 330 },
+      { id: 'rs-5', x: 300, y: 330 },
+      { id: 'rs-6', x: 560, y: 460 },
+      { id: 'rs-7', x: 40, y: 300 },
+    ],
+    startingMoney: 450,
+    baseLives: 18,
+    waveCount: 16,
+    difficultyFactor: 1.15,
+    airFactor: 1.0,
+    seed: 47,
+    theme: {
+      bg: 0x4a4138,
+      road: 0x9b8b72,
+      roadEdge: 0x5f5342,
+      rock: 0x3a332c,
+      rockLight: 0x5a5044,
+      deco: 'rocks',
+    },
+  },
+  {
+    id: 'eagle-canyon',
+    name: 'Eagle Canyon',
+    difficulty: 'Hard',
+    description: 'Open canyon skies. Many flying enemies cross routes your ground towers cannot touch. Few build pads.',
+    pathWaypoints: [
+      { x: -40, y: 120 },
+      { x: 180, y: 120 },
+      { x: 180, y: 440 },
+      { x: 500, y: 440 },
+      { x: 500, y: 140 },
+      { x: 760, y: 140 },
+      { x: 760, y: 480 },
+      { x: 900, y: 480 },
+    ],
+    airPathWaypoints: [
+      { x: -40, y: 120 },
+      { x: 250, y: 60 },
+      { x: 560, y: 70 },
+      { x: 760, y: 210 },
+      { x: 900, y: 480 },
+    ],
+    buildPads: [
+      { id: 'ec-1', x: 100, y: 200 },
+      { id: 'ec-2', x: 270, y: 330 },
+      { id: 'ec-3', x: 400, y: 250 },
+      { id: 'ec-4', x: 590, y: 300 },
+      { id: 'ec-5', x: 660, y: 470 },
+      { id: 'ec-6', x: 840, y: 380 },
+    ],
+    startingMoney: 400,
+    baseLives: 15,
+    waveCount: 18,
+    difficultyFactor: 1.3,
+    airFactor: 1.6,
+    seed: 83,
+    theme: {
+      bg: 0x584432,
+      road: 0xa3815c,
+      roadEdge: 0x6b5132,
+      rock: 0x46352a,
+      rockLight: 0x6e553e,
+      deco: 'mesa',
+    },
+  },
+];
+
+export function getMapById(id) {
+  return MAPS.find((m) => m.id === id);
+}
+
+export function nextMapId(id) {
+  const i = MAPS.findIndex((m) => m.id === id);
+  return i >= 0 && i < MAPS.length - 1 ? MAPS[i + 1].id : null;
+}
