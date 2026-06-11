@@ -40,6 +40,7 @@ export class GameScene extends Phaser.Scene {
     this.freezeTimer = 0;
     this.paused = false;
     this.airstrikeMode = false;
+    this.gameSpeed = 1;
 
     this.enemies = [];
     this.towers = [];
@@ -209,6 +210,7 @@ export class GameScene extends Phaser.Scene {
       const k = ev.key.toLowerCase();
       if (k === ' ') this.tryStartWave();
       else if (k === 'p') this.togglePause();
+      else if (k === 'f') this.cycleSpeed();
       else if (k === 'escape') {
         this.airstrikeMode = false;
         this.clearSelection();
@@ -476,6 +478,12 @@ export class GameScene extends Phaser.Scene {
     this.events.emit('pause', this.paused);
   }
 
+  cycleSpeed() {
+    this.gameSpeed = this.gameSpeed >= 3 ? 1 : this.gameSpeed + 1;
+    this.audio.click();
+    this.events.emit('speed', this.gameSpeed);
+  }
+
   onWaveCleared() {
     const waveDef = this.waves[this.currentWave - 1];
     if (waveDef) {
@@ -511,7 +519,7 @@ export class GameScene extends Phaser.Scene {
 
   update(time, delta) {
     if (this.paused || this.state === STATES.VICTORY || this.state === STATES.GAME_OVER) return;
-    const dt = Math.min(delta, 50) / 1000;
+    const dt = (Math.min(delta, 50) / 1000) * this.gameSpeed;
 
     const wasFrozen = this.freezeTimer > 0;
     if (this.freezeTimer > 0) this.freezeTimer = Math.max(0, this.freezeTimer - dt);

@@ -21,7 +21,7 @@ Defend the base at the end of a winding canyon road. Enemies pour in from the mo
 - **Click/tap** a build pad to select it, then pick a tower from the bottom panel
 - **Click/tap** an existing tower to upgrade, sell, or change its target mode
 - **1–5**: build the corresponding tower on the selected pad
-- **Space**: start the next wave · **P**: pause · **M**: mute · **Esc**: deselect
+- **Space**: start the next wave · **P**: pause · **F** or the **1×/2×/3×** button: game speed · **M**: mute · **Esc**: deselect
 
 ## Install
 

@@ -75,15 +75,21 @@ export class UIScene extends Phaser.Scene {
     this.onMessage = (msg) => this.showMessage(msg);
     this.onGameEnd = ({ victory }) => this.showEndScreen(victory);
     this.onPause = (paused) => this.pauseOverlay.setVisible(paused);
+    this.onSpeed = (speed) => {
+      this.speedBtn.setLabel(`${speed}×`);
+      this.showMessage(`Game speed: ${speed}×`, 1.2);
+    };
     this.gs.events.on('selection', this.onSelection);
     this.gs.events.on('message', this.onMessage);
     this.gs.events.on('game-end', this.onGameEnd);
     this.gs.events.on('pause', this.onPause);
+    this.gs.events.on('speed', this.onSpeed);
     this.events.once('shutdown', () => {
       this.gs.events.off('selection', this.onSelection);
       this.gs.events.off('message', this.onMessage);
       this.gs.events.off('game-end', this.onGameEnd);
       this.gs.events.off('pause', this.onPause);
+      this.gs.events.off('speed', this.onSpeed);
     });
 
     this.refreshSelectedPanel();
@@ -111,6 +117,7 @@ export class UIScene extends Phaser.Scene {
       this.audio.click();
     });
     this.pauseBtn = new UIButton(this, GAME_W - 66, TOP_H / 2, 36, 26, '⏸', () => this.gs.togglePause());
+    this.speedBtn = new UIButton(this, GAME_W - 110, TOP_H / 2, 44, 26, '1×', () => this.gs.cycleSpeed());
   }
 
   // ---------- bottom panel ----------
